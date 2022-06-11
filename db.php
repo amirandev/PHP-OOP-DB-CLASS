@@ -86,7 +86,28 @@ class OOPMagic{
         // run this query
         return $this->magic_count;
     }
+    
+    public function first(){
+        // run this query
+        return $this->magic_record;
+    }
 }
 
-$run = DB::from('users')->where('id', 3)->where('level', 2)->get();//->count();
+// $run = DB::from('users')->where('id', 3)->where('level', 2)->get()->count(); works fine
+// $run = DB::from('users')->where('id', 3)->where('level', 2)->get()->first(); // works fine
+
+// return the class object - but I want to return $this->magic_results
+$run = DB::from('users')->where('id', 3)->where('level', 2)->get();
 dump($run);
+
+/*
+    $run = DB::from('users')->where('id', 3)->where('level', 2)->get();
+    dump($run);
+
+    output:
+    ^ OOPMagic {#3 ▼
+        +magic_count: "SELECT count(*) FROM users id = 3 AND level = 2"
+        +magic_results: "SELECT * FROM users id = 3 AND level = 2"
+        +magic_record: "SELECT * FROM users id = 3 AND level = 2 LIMIT 1"
+    }
+*/

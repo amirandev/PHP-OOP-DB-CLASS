@@ -68,6 +68,7 @@ class OOPMagic{
 	{
         //var_dump($method);
 		if (!in_array($method, array_keys($this->functions))) {
+            // it runs this function if we call a function whith absolutly no defined but we still have no any solutions to run the method without calling it from outside of this class (-_-)
 			return $this->results();
 		}
 
@@ -76,7 +77,7 @@ class OOPMagic{
 		return call_user_func_array($this->functions[$method], $args);
 	}
     
-    public function results($magicalArray = []){
+    public function results(){
         // run this query
         return 'I`m a default function'; // $this->magic_results;
     }
